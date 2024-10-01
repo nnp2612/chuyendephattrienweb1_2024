@@ -22,17 +22,7 @@ if (!empty($_POST['submit'])) {
         $userModel->insertUser($_POST);
     }
     header('location: list_users.php');
-    // Kiểm tra Name
-if (empty($name)) {
-    echo "Name is required.";
-} elseif (!preg_match("/^[a-zA-Z0-9]{5,15}$/", $name)) {
-    echo "Name must be between 5 and 15 characters and contain only letters and numbers.";
-    if (empty($password)) {
-        echo "Password is required.";
-    } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()]).{5,10}$/", $password)) {
-        echo "Password must be between 5 and 10 characters, including at least one lowercase letter, one uppercase letter, one digit, and one special character.";
-    }
-}
+  
 }
 // Mã hóa ID
 function encrypt_id($id) {
