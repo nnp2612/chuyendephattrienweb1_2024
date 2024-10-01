@@ -1,4 +1,5 @@
 <?php
+
 // Start the session
 session_start();
 require_once 'models/UserModel.php';
@@ -21,7 +22,34 @@ if (!empty($_POST['submit'])) {
         $userModel->insertUser($_POST);
     }
     header('location: list_users.php');
+    // Kiểm tra Name
+if (empty($name)) {
+    echo "Name is required.";
+} elseif (!preg_match("/^[a-zA-Z0-9]{5,15}$/", $name)) {
+    echo "Name must be between 5 and 15 characters and contain only letters and numbers.";
+    if (empty($password)) {
+        echo "Password is required.";
+    } elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()]).{5,10}$/", $password)) {
+        echo "Password must be between 5 and 10 characters, including at least one lowercase letter, one uppercase letter, one digit, and one special character.";
+    }
 }
+}
+// Mã hóa ID
+function encrypt_id($id) {
+    $key = 'secret_key'; // Khóa bí mật
+    return base64_encode($id . $key);
+}
+
+// Giải mã ID
+function decrypt_id($encoded_id) {
+    $key = 'secret_key';
+    return str_replace($key, '', base64_decode($encoded_id));
+}
+
+// URL sau khi mã hóa
+$encoded_id = encrypt_id($user_id);
+
+
 
 ?>
 <!DOCTYPE html>
@@ -40,18 +68,27 @@ if (!empty($_POST['submit'])) {
                 </div>
                 <form method="POST">
                     <input type="hidden" name="id" value="<?php echo $_id ?>">
-                    <div class="form-group">
+                    <div class="form-group"
+                    >
+                        
                         <label for="name">Name</label>
                         <input class="form-control" name="name" placeholder="Name" value='<?php if (!empty($user[0]['name'])) echo $user[0]['name'] ?>'>
+                        
+                        
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        
+                        <input type="password" name="password" class="form-control" placeholder="Password" >
+                        
+                                           
                     </div>
 
                     <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
                 </form>
-            <?php } else { ?>
+            <?php } else {
+                
+                 ?>
                 <div class="alert alert-success" role="alert">
                     User not found!
                 </div>
