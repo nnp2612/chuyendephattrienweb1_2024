@@ -22,7 +22,7 @@ if (!empty($_POST['submit'])) {
         $userModel->insertUser($_POST);
     }
     header('location: list_users.php');
-  
+
 }
 // Mã hóa ID
 function encrypt_id($id) {
