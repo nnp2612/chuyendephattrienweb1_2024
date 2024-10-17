@@ -1,0 +1,81 @@
+body {
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 14px !important;
+  color: #999 !important;
+  line-height: 26px !important;
+  font-weight: 400 !important;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+p {
+  margin: 0 0 10px;
+}
+.box-item {
+  margin-bottom: 40px;
+  border: 1px solid #f4f4f4;
+  padding: 17px 19px 12px;
+  transition: all 0.7s ease;
+}
+.box-item a h5 {
+  color: #3d3d3d;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 0 16px;
+  transition: all 500ms ease;
+}
+.box-item:hover a h5 {
+  color: #43c3ea;
+}
+.box-item .box-img {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+.box-item:hover .box-img img {
+  transition: all 0.7s ease;
+  width: 100%;
+}
+.box-item {
+  position: relative;
+  width: 100%;
+}
+.box-item:hover .overlay {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(67, 195, 234, 0.9);
+  z-index: 10;
+  transition: all 0.7s ease;
+}
+.overlay {
+  position: absolute;
+  transition: all 0.7s ease;
+}
+.overlay .box {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.overlay .box .content {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+.box-item .box-content {
+  margin: 18px 0 0;
+}
+.box-item .box-img .overlay .box .content a i {
+  background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+  border-radius: 3%;
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  height: 45px;
+  line-height: 48px;
+  transition: all 500ms ease 0s;
+  width: 45px;
+}
